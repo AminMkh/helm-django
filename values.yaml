@@ -1,0 +1,161 @@
+# Default values for django.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: 
+  # pullPolicy: Always
+  pullPolicy: IfNotPresent
+  tag: 0.0.5
+  # tag: ""
+
+imagePullSecrets:
+  - name: 
+
+nameOverride: "" # append this name to helm installation name.
+# helm deploy my-awesome-app django-app/     => my-awesome-nameOverride-app-web-74d48f548f-x4zhs
+fullnameOverride: "" # replace entire helm installation name with this.
+# helm deploy my-awesome-app django-app/     => fullnameOverride-web-74d48f548f-x4zhs
+
+env:
+  normal:
+    DJANGO_ALLOWED_HOSTS: "*"
+    DISABLE_DATABASE_MIGRATE: "true"
+
+  secret:
+    # SECRET_KEY:
+    # DATABASE_URL:
+    # REDIS_URL:
+    # Not encoded
+    SECRET_KEY: 6=2yh+)_qtf04mh$yut9h%iw6_(e$9y18_qk&ftq#osb*7lg2
+
+
+web:
+  replicaCount: 2
+  port: 8000
+  autoscaling:
+    enabled: false
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+
+  budget:
+    minAvailable: 1 # Ignored when replicaCount is 1
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+    # podAntiAffinity:
+    #   preferredDuringSchedulingIgnoredDuringExecution:
+    #   - weight: 100
+    #     podAffinityTerm:
+    #       labelSelector:
+    #         matchExpressions:
+    #         - key: app.kubernetes.io/instance
+    #           operator: In
+    #           values:
+    #           - glitchtip-prod-web
+    #       topologyKey: kubernetes.io/hostname
+
+  #startup first, if passes, we do readiness (if failed we stop the svc/requests), liveness if failed will restart
+  # https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+  startupProbe:
+    failureThreshold: 10
+    initialDelaySeconds: 5
+    timeoutSeconds: 10
+    path: "/api/v1/healthcheck/?readinessProbe"
+  readinessProbe:
+    failureThreshold: 10
+    initialDelaySeconds: 5
+    timeoutSeconds: 10
+    path: "/api/v1/healthcheck/?readinessProbe"
+  livenessProbe:
+    failureThreshold: 5
+    initialDelaySeconds: 5
+    timeoutSeconds: 10
+    path: "/api/v1/healthcheck/?livenessProbe"
+
+  service:
+    type: ClusterIP
+    port: 8000
+
+  ingress:
+    enabled: true
+    className: ""
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+
+    hosts:
+      - host: amin.com
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls:
+     - secretName: amin-example-tls
+       hosts:
+         - amin.com
+
+worker:
+  enabled: false
+  replicaCount: 1
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 90
+    # targetMemoryUtilizationPercentage: 80
+  resources:
+    limits:
+      cpu: 900m
+      memory: 768Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  args: ['celery', '-A', 'backend', 'worker', '-l', 'DEBUG']
+
+beat:
+  enabled: false
+  args: ['celery', '-A', 'backend', 'beat', '-l', 'DEBUG']
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+  # name: amin-sa
+
+# Default to disabled, use a managed service. But can be enabled here.
+postgresql:
+  enabled: true
+  postgresqlDatabase: main
+  postgresqlUsername: postgres
+  postgresqlPassword: postgres # Must be set
+  servicePort: 5432
+
+# Default to disabled, use a managed service. But can be enabled here.
+redis:
+  enabled: true
+  auth:
+    enabled: true
+    password: redis-password
+
+  master:
+    persistence:
+      enabled: false
+  replica:
+    replicaCount: 1
+    persistence:
+      enabled: false
