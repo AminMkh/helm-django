@@ -23,7 +23,14 @@ spec:
       labels:
         {{- include "django.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: web
+
     spec:
+      
+    {{- with .Values.hostAliases }}
+      hostAliases:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
