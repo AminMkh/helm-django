@@ -5,13 +5,13 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: 
+  repository: CHANGE_ME
   pullPolicy: IfNotPresent
   # pullPolicy: Always
-  tag: 
+  tag: CHANGE_ME
 
 imagePullSecrets:
-  - name: 
+  - name: CHANGE_ME
 
 nameOverride: "" # append this name to helm installation name.
 # helm deploy my-awesome-app django-app/     => my-awesome-nameOverride-app-web-74d48f548f-x4zhs
@@ -21,17 +21,15 @@ fullnameOverride: "" # replace entire helm installation name with this.
 env:
   normal: 
     #App settings
-    APP_DEBUG: true
-    DJANGO_LOGLEVEL: debug
-    FRONTEND_URL: 
-    BACKEND_URL: 
-
+    APP_DEBUG: CHANGE_ME
+    DJANGO_LOGLEVEL: CHANGE_ME
+    FRONTEND_URL: CHANGE_ME
+    BACKEND_URL: CHANGE_ME
     DISABLE_DATABASE_MIGRATE: true # default false (switch to true in case we wanted to disable built in migrations - dealing with sensitive data)
 
-
   secret: 
-    SECRET_KEY: 
-    SENTRY_DSN: 
+    SECRET_KEY: CHANGE_ME
+    SENTRY_DSN: CHANGE_ME
 
 web:
   replicaCount: 2
@@ -73,17 +71,20 @@ web:
     failureThreshold: 10
     initialDelaySeconds: 5
     timeoutSeconds: 10
-    path: "/api/v1/healthcheck/?startupProbe"
+    # path: "/api/v1/healthcheck/?readinessProbe"
+    path: "api/status"
   readinessProbe:
     failureThreshold: 10
     initialDelaySeconds: 5
     timeoutSeconds: 10
-    path: "/api/v1/healthcheck/?readinessProbe"
+    # path: "/api/v1/healthcheck/?readinessProbe"
+    path: "api/status"
   livenessProbe:
     failureThreshold: 5
     initialDelaySeconds: 5
     timeoutSeconds: 10
-    path: "/api/v1/healthcheck/?livenessProbe"
+    # path: "/api/v1/healthcheck/?readinessProbe"
+    path: "api/status"
 
   service:
     type: ClusterIP
@@ -98,14 +99,14 @@ web:
       # kubernetes.io/tls-acme: "true"
 
     hosts:
-      - host: 
+      - host: CHANGE_ME
         paths:
           - path: /
             pathType: ImplementationSpecific
     tls:
      - secretName: example-tls
        hosts:
-         - 
+         - CHANGE_ME
 
 worker:
   enabled: false
