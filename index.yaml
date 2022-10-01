@@ -1,11 +1,31 @@
 apiVersion: v1
 entries:
+  django-app:
+  - apiVersion: v2
+    appVersion: 0.0.5
+    created: "2022-10-01T14:59:17.52366+03:00"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.5.3
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 14.7.2
+    description: Generic Django + Celery Helm Chart
+    digest: 5e78a5c027e3b57eb04257fddfe764b272dc06263ef86fb997024f65e1c92901
+    name: django-app
+    type: application
+    urls:
+    - django-app-0.0.1.tgz
+    version: 0.0.1
   postgresql:
   - annotations:
       category: Database
     apiVersion: v2
     appVersion: 14.5.0
-    created: "2022-10-01T14:53:22.979185+03:00"
+    created: "2022-10-01T14:59:17.529737+03:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -42,7 +62,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 7.0.5
-    created: "2022-10-01T14:53:22.988153+03:00"
+    created: "2022-10-01T14:59:17.53868+03:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -70,4 +90,4 @@ entries:
     urls:
     - charts/redis-17.2.0.tgz
     version: 17.2.0
-generated: "2022-10-01T14:53:22.970941+03:00"
+generated: "2022-10-01T14:59:17.504798+03:00"
