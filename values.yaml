@@ -141,8 +141,14 @@ serviceAccount:
   name: 
 
 # Default to disabled, use a managed service. But can be enabled here.
+#TODO: remove old values (for old charts)
 postgresql:
   enabled: true
+  auth:
+    database: main
+    username: postgres
+    password: postgres
+    postgresPassword: postgres # Must be set
   postgresqlDatabase: main
   postgresqlUsername: postgres
   postgresqlPassword: postgres # Must be set
