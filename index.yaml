@@ -3,7 +3,7 @@ entries:
   django-app:
   - apiVersion: v2
     appVersion: 0.0.5
-    created: "2023-08-23T16:34:23.468343+03:00"
+    created: "2023-08-23T16:39:58.18522+03:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -14,7 +14,7 @@ entries:
       repository: https://charts.bitnami.com/bitnami
       version: 17.15.6
     description: Generic Django + Celery Helm Chart
-    digest: c3266fc1137bdb19a17d5dc950215098a9978a64b163b539a582fe4bf98d9183
+    digest: 861a9b01296d10c3ce636825d56272c74d7e3d48a077221962ab0b6e59960f7b
     icon: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png
     name: django-app
     type: application
@@ -23,7 +23,7 @@ entries:
     version: 0.0.5
   - apiVersion: v2
     appVersion: 0.0.5
-    created: "2023-08-23T16:34:23.455581+03:00"
+    created: "2023-08-23T16:39:58.164832+03:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -43,7 +43,7 @@ entries:
     version: 0.0.4
   - apiVersion: v2
     appVersion: 0.0.5
-    created: "2023-08-23T16:34:23.444211+03:00"
+    created: "2023-08-23T16:39:58.153939+03:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -74,7 +74,7 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 15.4.0
-    created: "2023-08-23T16:34:23.471705+03:00"
+    created: "2023-08-23T16:39:58.187803+03:00"
     dependencies:
     - name: common
       repository: oci://registry-1.docker.io/bitnamicharts
@@ -118,7 +118,7 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 7.2.0
-    created: "2023-08-23T16:34:23.474607+03:00"
+    created: "2023-08-23T16:39:58.191286+03:00"
     dependencies:
     - name: common
       repository: oci://registry-1.docker.io/bitnamicharts
@@ -144,4 +144,4 @@ entries:
     urls:
     - charts/redis-17.15.6.tgz
     version: 17.15.6
-generated: "2023-08-23T16:34:23.435139+03:00"
+generated: "2023-08-23T16:39:58.144645+03:00"
