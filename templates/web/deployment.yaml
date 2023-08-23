@@ -46,16 +46,17 @@ spec:
           {{- if .Values.web.args }}
           args: {{- toYaml .Values.web.args | nindent 10}}
           {{- end }}
-            securityContext:
-              {{- toYaml .Values.securityContext | nindent 12 }}
-            image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-            imagePullPolicy: {{ .Values.image.pullPolicy }}
-            envFrom:
-              - secretRef:
-                  name: {{ include "django.fullname" . }}
-              - configMapRef:
-                  name: {{ include "django.fullname" . }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - secretRef:
+                name: {{ include "django.fullname" . }}
+            - configMapRef:
+                name: {{ include "django.fullname" . }}
 
+      # pod containers
       containers:
         - name: {{ .Chart.Name }}
           {{- if .Values.web.args }}
