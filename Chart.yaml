@@ -26,11 +26,11 @@ icon: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x
 
 dependencies:
   - name: postgresql
-    version: 11.9.6
+    version: 12.9.0
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
 
   - name: redis
-    version: 17.3.1
+    version: 17.15.6
     repository: https://charts.bitnami.com/bitnami
     condition: redis.enabled
