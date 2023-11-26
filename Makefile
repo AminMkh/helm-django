@@ -7,5 +7,7 @@ package:
 
 index:
 	helm repo index .
-
-# git commit / push
+push:
+	git add .
+	git commit -m "update chart"
+	git push
