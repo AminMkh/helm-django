@@ -107,6 +107,8 @@ web:
      - secretName: example-tls
        hosts:
          - CHANGE_ME
+  # command: ['celery', '-A', 'project', 'worker', '-l', 'DEBUG']
+  # args: ['celery', '-A', 'project', 'worker', '-l', 'DEBUG']
 
 worker:
   enabled: false
@@ -127,11 +129,13 @@ worker:
   nodeSelector: {}
   tolerations: []
   affinity: {}
-  args: ['celery', '-A', 'project', 'worker', '-l', 'DEBUG']
+  command: ['celery', '-A', 'project', 'worker', '-l', 'DEBUG']
+  # args: ['celery', '-A', 'project', 'worker', '-l', 'DEBUG']
 
 beat:
   enabled: true
-  args: ['celery', '-A', 'project', 'beat', '-l', 'DEBUG']
+  # command: 
+  # args: ['celery', '-A', 'project', 'beat', '-l', 'DEBUG']
 
 serviceAccount:
   # Specifies whether a service account should be created
