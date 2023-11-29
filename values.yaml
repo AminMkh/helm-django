@@ -25,7 +25,7 @@ env:
     DJANGO_LOGLEVEL: CHANGE_ME
     FRONTEND_URL: CHANGE_ME
     BACKEND_URL: CHANGE_ME
-    DISABLE_DATABASE_MIGRATE: true # default false (switch to true in case we wanted to disable built in migrations - dealing with sensitive data)
+    DATABASE_MIGRATE_DISABLE: true # default false (switch to true in case we wanted to disable built in migrations - dealing with sensitive data)
 
   secret: 
     SECRET_KEY: CHANGE_ME
