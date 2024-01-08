@@ -137,6 +137,11 @@ beat:
   # command: 
   # args: ['celery', '-A', 'project', 'beat', '-l', 'DEBUG']
 
+flower:
+  enabled: false
+  # command: 
+  # args: ['celery', '-A', 'project', 'beat', '-l', 'DEBUG']
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: true

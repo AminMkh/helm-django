@@ -3,13 +3,13 @@ entries:
   django-app:
   - apiVersion: v2
     appVersion: 0.0.5
-    created: "2023-12-21T19:31:05.133882+02:00"
+    created: "2024-01-08T19:43:30.487082+02:00"
     description: Generic Django + Celery Helm Chart
-    digest: 0da32ef5447c805385c7343c230ae3cf7686c71d2204759aa2a88ea0002b153e
+    digest: 66c395963d5d3d9013b730c5d1a7e0a02a9d6f829f13de2c66bcc8afd8af595f
     icon: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png
     name: django-app
     type: application
     urls:
     - django-app-0.0.8.tgz
     version: 0.0.8
-generated: "2023-12-21T19:31:05.133373+02:00"
+generated: "2024-01-08T19:43:30.486139+02:00"
