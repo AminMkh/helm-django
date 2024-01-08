@@ -68,18 +68,21 @@ web:
   #startup first, if passes, we do readiness (if failed we stop the svc/requests), liveness if failed will restart
   # https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
   startupProbe:
+    enabled: true
     failureThreshold: 10
     initialDelaySeconds: 5
     timeoutSeconds: 10
     # path: "/api/v1/healthcheck/?readinessProbe"
     path: "api/status"
   readinessProbe:
+    enabled: true
     failureThreshold: 10
     initialDelaySeconds: 5
     timeoutSeconds: 10
     # path: "/api/v1/healthcheck/?readinessProbe"
     path: "api/status"
   livenessProbe:
+    enabled: true
     failureThreshold: 5
     initialDelaySeconds: 5
     timeoutSeconds: 10

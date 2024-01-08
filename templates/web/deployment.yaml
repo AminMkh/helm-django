@@ -57,7 +57,7 @@ spec:
             - name: http
               containerPort: {{ .Values.web.port | default 8080 }}
               protocol: TCP
-          {{- if .Values.web.startupProbe -}}
+          {{- if .Values.web.startupProbe.enabled -}}
           startupProbe:
             failureThreshold: {{ .Values.web.startupProbe.failureThreshold }}
             httpGet:
@@ -68,7 +68,7 @@ spec:
             # failureThreshold: 30
             # periodSeconds: 10
           {{- end }}
-          {{- if .Values.web.livenessProbe -}}
+          {{- if .Values.web.livenessProbe.enabled -}}
           livenessProbe:
             failureThreshold: {{ .Values.web.livenessProbe.failureThreshold }}
             httpGet:
@@ -77,7 +77,7 @@ spec:
             initialDelaySeconds: {{ .Values.web.livenessProbe.initialDelaySeconds }}
             timeoutSeconds: {{ .Values.web.livenessProbe.timeoutSeconds }}
           {{- end }}
-          {{- if .Values.web.readinessProbe -}}
+          {{- if .Values.web.readinessProbe.enabled -}}
           readinessProbe:
             failureThreshold: {{ .Values.web.readinessProbe.failureThreshold }}
             httpGet:
@@ -86,6 +86,7 @@ spec:
             initialDelaySeconds: {{ .Values.web.readinessProbe.initialDelaySeconds }}
             timeoutSeconds: {{ .Values.web.readinessProbe.timeoutSeconds }}
           {{- end }}
+
           resources:
             {{- toYaml .Values.web.resources | nindent 12 }}
           env:
