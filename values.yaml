@@ -92,6 +92,7 @@ web:
   service:
     type: ClusterIP
     port: 8000
+    annotations: []
 
   ingress:
     enabled: true

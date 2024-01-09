@@ -4,6 +4,10 @@ metadata:
   name: {{ include "django.fullname" . }}-web-service
   labels:
     {{- include "django.labels" . | nindent 4 }}
+    {{- with .Values.web.service.annotations }}
+    annotations:
+      {{- toYaml . | nindent 4 }}
+    {{- end }}
 
 spec:
   type: {{ .Values.web.service.type }}
