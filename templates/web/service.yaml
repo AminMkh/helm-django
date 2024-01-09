@@ -13,7 +13,7 @@ spec:
   type: {{ .Values.web.service.type }}
   ports:
     - port: {{ .Values.web.service.port }} # your browser port xD
-      targetPort: {{ .Values.web.service.targetPort }} # your app exposed ?
+      targetPort: {{ .Values.web.service.targetPort }} # your app exposed
       protocol: TCP
       name: http
   selector:

@@ -91,8 +91,8 @@ web:
 
   service:
     type: ClusterIP
-    targetPort: 80
-    port: 8000
+    port: 80 # your browser port xD
+    targetPort: 8000  # your app exposed
     annotations: []
 
   ingress:
