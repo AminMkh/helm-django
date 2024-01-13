@@ -89,6 +89,8 @@ spec:
           resources:
             {{- toYaml .Values.web.resources | nindent 12 }}
           env:
+            - name: SERVER_ROLE
+              value: "web"
             - name: POD_IP
               valueFrom:
                 fieldRef:
