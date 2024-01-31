@@ -39,7 +39,7 @@ helm.sh/chart: {{ include "django.chart" . }}
 {{ include "django.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
+{{- end -}}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
@@ -49,6 +49,11 @@ Selector labels
 {{- define "django.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "django.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end -}}
+
+{{- define "django.flowerSelectorLabels" -}}
+app.kubernetes.io/name: {{ include "django.name" . }}-flower
+app.kubernetes.io/instance: {{ .Release.Name }-flower
 {{- end -}}
 
 {{/*

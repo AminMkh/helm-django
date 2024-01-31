@@ -1,0 +1,29 @@
+{{- if .Values.worker.enabled -}}
+{{- if .Values.beat.enabled -}}
+{{- if .Values.flower.enabled -}}
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "django.fullname" . }}-web-service
+  labels:
+    {{- include "django.labels" . | nindent 4 }}
+  {{- with .Values.flower.service.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+
+spec:
+  type: {{ .Values.flower.service.type }}
+  ports:
+    - port: {{ .Values.flower.service.port }} # your browser port xD
+      targetPort: {{ .Values.flower.service.targetPort }} # your app exposed
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "django.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: flower
+
+{{- end }}
+{{- end }}
+{{- end }}
