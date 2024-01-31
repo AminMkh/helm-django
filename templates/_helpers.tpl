@@ -39,7 +39,7 @@ helm.sh/chart: {{ include "django.chart" . }}
 {{ include "django.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end -}}
+{{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
@@ -53,7 +53,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 
 {{- define "django.flowerSelectorLabels" -}}
 app.kubernetes.io/name: {{ include "django.name" . }}-flower
-app.kubernetes.io/instance: {{ .Release.Name }-flower
+app.kubernetes.io/instance: {{ .Release.Name }}-flower
 {{- end -}}
 
 {{/*
@@ -67,10 +67,10 @@ Create the name of the service account to use
     {{- end -}}
 {{- end -}}
 
+
 {{/**********************************************************************************
 Postgresql
 **********************************************************************************/}}
-
 # {{/*
 # Create a default fully qualified app name.
 # We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
@@ -103,10 +103,10 @@ Set postgresql url
     {{- end -}}
 {{- end -}}
 
+
 {{/**********************************************************************************
 Redis
 **********************************************************************************/}}
-
 {{/*
 Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
